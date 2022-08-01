@@ -4,7 +4,7 @@ function cityWeather(response) {
     let temperature = document.querySelector("#temperature");
     temperature.innerHTML = `${Math.round(response.data.main.temp)} °C`;
     let humidity = document.querySelector("#humidity");
-    humadity.innerHTML = `humidity: ${response.data.main.humidity}%`;
+    humadity.innerHTML = `${response.data.main.humidity}%`;
     document.querySelector("#wind").innerHTML = Math.round(
       response.data.wind.speed
     );
@@ -35,11 +35,12 @@ function cityWeather(response) {
     navigator.geolocation.getCurrentPosition(searchLocation);
   }
   
-  let searchForm = document.querySelector("#search-form");
-  searchForm.addEventListener("submit", buttonSubmit);
+  let searchForm = document.querySelector("#search");
+  searchForm.addEventListener("click", buttonSubmit);
   
   let currentLocationButton = document.querySelector("#current");
   current.addEventListener("click", getCurrentLocation);
+  searchCity(city);
   
   let now = new Date();
   let days = [
@@ -69,7 +70,10 @@ function cityWeather(response) {
   ];
   let currentMonth = months[now.getMonth()];
   let currentYear = now.getFullYear();
+  let currentHour = now.getHours();
+  let currentMinutes = now.getMinutes();
   let h4 = document.querySelector("h4");
-  h4.innerHTML = `${currentDate} ${currentMonth} ${currentYear}, ${currentDay}`;
+  h4.innerHTML = `${currentDate} ${currentMonth} ${currentYear}, ${currentDay}, ${currentHour}:${currentMinutes}`;
+
   
   
