@@ -27,6 +27,17 @@ li {
   font-weight: 100;
   line-height: 19px;
 }
+.temperature {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.units {
+  position: relative;
+  font-size: 16px;
+  top: -24px;
+}
 .currentDate {
   font-size: 18px;
   text-decoration: none;

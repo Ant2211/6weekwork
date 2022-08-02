@@ -2,7 +2,7 @@ function cityWeather(response) {
     let h1 = document.querySelector("h1");
     h1.innerHTML = response.data.name;
     let temperature = document.querySelector("#temperature");
-    temperature.innerHTML = `${Math.round(response.data.main.temp)} °C`;
+    temperature.innerHTML = `${Math.round(response.data.main.temp)}`;
     let humidity = document.querySelector("#humidity");
     humadity.innerHTML = `${response.data.main.humidity}%`;
     document.querySelector("#wind").innerHTML = Math.round(
