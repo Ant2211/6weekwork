@@ -15,7 +15,9 @@
     />
   </head>
   <body>
+    
     <div class="weather-app">
+        <h4 class = "currentDate">Current Date</h4>
       <form class="input" id="search-form"></form>
         <input type="text" id="input-city" placeholder="Enter a city" />
         <input type="submit" value="search" id="search" />
@@ -29,24 +31,26 @@
           </div>
           <div class="col">
             <h1 id="city"><em>Kyiv</em></h1>
-            <p><h4 class = "currentDate">Current Date</h4></p>
-            </div>
-          <div class="col">
-            <div class="card text-bg-primary mb-3" style="max-width: 18rem">
-              <div class="card-header">Temperature</div>
-              <div class="card-body">
-                <h5 class="card-title">
-                  <span class = "temperature" id = "temperature"><h2>24°C</h2>
-                  </span>
-                </h5>
-                <p class="card-text" id="humidity">Humidity:</p>
-                <p class="card-text" id="wind">Wind:</p>
-              </div>
+            <ul>
+                <li>
+                    <h2 class = "temperature" id = "temperature">24 °C</h2>
+                </li>
+                <li>
+<h6 class="humidity" id="humidity">Humidity:</h6>
+                </li>
+                <li>
+<h6 class="wind" id="wind">Wind:</h6>
+                </li>
+                <li>
+<h6 class="description" id="description"> cloud </h6>
+                </li>
+                </ul>
+            
+                                      </div>
             </div>
           </div>
         </div>
-      </div>
-      <a href="https://github.com/Ant2211/6weekwork" target="_blank">Github link</a>
+            <a href="https://github.com/Ant2211/6weekwork" target="_blank">Github link</a>
         <script src="index.js"></script>
   </body>
 </html>
