@@ -22,24 +22,18 @@ function cityWeather(response) {
     searchCity(city);
   }
   
-  function searchLocation(position) {
-    let apiKey = "e0011d9afadcdf29795388bf3f4d5677";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  
-    axios.get(apiUrl).then(cityWeather);
-  }
-  
-  function getCurrentLocation(event) {
-    event.preventDefault();
-    navigator.geolocation.getCurrentPosition(searchLocation);
-  }
-  
-  let searchForm = document.querySelector("#search");
+    let searchForm = document.querySelector("#search");
   searchForm.addEventListener("click", buttonSubmit);
-  
-  let currentLocationButton = document.querySelector("#current");
-  current.addEventListener("click", getCurrentLocation);
-  searchCity(city);
+      searchCity(city);
+      
+      function searchLocation(position) {
+        let apiKey = "e0011d9afadcdf29795388bf3f4d5677";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+      
+        axios.get(apiUrl).then(cityWeather);
+      }
+      
+        navigator.geolocation.getCurrentPosition(searchLocation);
   
   let now = new Date();
   let days = [
