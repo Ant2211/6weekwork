@@ -25,7 +25,7 @@ function cityWeather(response) {
     let searchForm = document.querySelector("#search");
   searchForm.addEventListener("click", buttonSubmit);
       searchCity(city);
-      
+
       function searchLocation(position) {
         let apiKey = "e0011d9afadcdf29795388bf3f4d5677";
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
@@ -46,7 +46,7 @@ function cityWeather(response) {
     "Saturday",
   ];
   let currentDay = days[now.getDay()];
-  let currentDate = now.getDate();
+  let currentDatePosition = now.getDate();
   let months = [
     "January",
     "February",
@@ -65,8 +65,10 @@ function cityWeather(response) {
   let currentYear = now.getFullYear();
   let currentHour = now.getHours();
   let currentMinutes = now.getMinutes();
-  let h4 = document.querySelector("h4");
-  h4.innerHTML = `${currentDate} ${currentMonth} ${currentYear}, ${currentDay}, ${currentHour}:${currentMinutes}`;
+  let currentShowDate = document.querySelector("#currentDate");
+  currentShowDate.innerHTML = `${currentDay}, ${currentDatePosition} ${currentMonth} ${currentYear}`;
+   let currentShowTime = document.querySelector ("#currentTime");
+   currentShowTime.innerHTML = `Last update: ${currentHour}:${currentMinutes}`;
 
   
   

@@ -38,9 +38,14 @@ li {
   font-size: 16px;
   top: -24px;
 }
-.currentDate {
+#currentDate {
   font-size: 18px;
   text-decoration: none;
+}
+#currentTime {
+  font-size: 18px;
+  text-decoration: none;
+  margin-top: 0; 
 }
 .input {
   padding: 10px 20px;
