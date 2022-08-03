@@ -64,7 +64,13 @@ function cityWeather(response) {
   let currentMonth = months[now.getMonth()];
   let currentYear = now.getFullYear();
   let currentHour = now.getHours();
+  if (currentHour < 10){
+    currentHour = `0 ${currentHour}`;
+  }
   let currentMinutes = now.getMinutes();
+  if (currentMinutes < 10){
+    currentMinutes = `0 ${currentMinutes}`;
+  }
   let currentShowDate = document.querySelector("#currentDate");
   currentShowDate.innerHTML = `${currentDay}, ${currentDatePosition} ${currentMonth} ${currentYear}`;
    let currentShowTime = document.querySelector ("#currentTime");
