@@ -1,3 +1,71 @@
+let now = new Date();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let currentDay = days[now.getDay()];
+  let currentDatePosition = now.getDate();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let currentMonth = months[now.getMonth()];
+  let currentYear = now.getFullYear();
+  let currentHour = now.getHours();
+  if (currentHour < 10){
+    currentHour = `0${currentHour}`;
+  }
+  let currentMinutes = now.getMinutes();
+  if (currentMinutes < 10){
+    currentMinutes = `0${currentMinutes}`;
+  }
+  let currentShowDate = document.querySelector("#currentDate");
+  currentShowDate.innerHTML = `${currentDay}, ${currentDatePosition} ${currentMonth} ${currentYear}`;
+   let currentShowTime = document.querySelector ("#currentTime");
+   currentShowTime.innerHTML = `Last update: ${currentHour}:${currentMinutes}`;
+
+function displayForecast() {
+    let forecastElement = document.querySelector("#forecast");
+  
+    let days = ["Thu", "Fri", "Sat", "Sun"];
+  
+    let forecastHTML = `<div class="row">`;
+    days.forEach(function (day) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col">
+          <strong>${day}</strong>
+          <img
+            src="http://openweathermap.org/img/wn/50d@2x.png"
+            alt=""
+            />
+          <div class="forecast-temp"> 18° <span class="forecast-temp-min"> 12° </span>
+          </div>
+        </div>
+    `;
+    });
+  
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+    console.log(forecastHTML);
+  }
+
 function cityWeather(response) {
     let h1 = document.querySelector("h1");
     let temperatureElement = document.querySelector("#temperature");
@@ -51,7 +119,7 @@ iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.da
        let celsiusLink = document.querySelector ("#celsius-link");
        celsiusLink.addEventListener ("click", showCelsiusTemp);
 searchCity(city);
-        
+displayForecast();
 
 function searchLocation(position) {
     let apiKey = "e0011d9afadcdf29795388bf3f4d5677";
@@ -61,53 +129,10 @@ function searchLocation(position) {
   }
   navigator.geolocation.getCurrentPosition(searchLocation);
       
-       
-
-
-
+    
   
   
-  let now = new Date();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let currentDay = days[now.getDay()];
-  let currentDatePosition = now.getDate();
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let currentMonth = months[now.getMonth()];
-  let currentYear = now.getFullYear();
-  let currentHour = now.getHours();
-  if (currentHour < 10){
-    currentHour = `0${currentHour}`;
-  }
-  let currentMinutes = now.getMinutes();
-  if (currentMinutes < 10){
-    currentMinutes = `0${currentMinutes}`;
-  }
-  let currentShowDate = document.querySelector("#currentDate");
-  currentShowDate.innerHTML = `${currentDay}, ${currentDatePosition} ${currentMonth} ${currentYear}`;
-   let currentShowTime = document.querySelector ("#currentTime");
-   currentShowTime.innerHTML = `Last update: ${currentHour}:${currentMinutes}`;
-
+  
 
   
   
