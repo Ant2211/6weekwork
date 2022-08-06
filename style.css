@@ -34,6 +34,10 @@ li {
   height: 64px;
   width: 64px;
 }
+#icon-days {
+  height: 64px;
+  width: 64px;
+}
 #temperature {
   font-size: 48px;
   line-height: 1;
@@ -53,11 +57,6 @@ li {
 #currentDate {
   font-size: 18px;
   text-decoration: none;
-}
-#currentTime {
-  font-size: 18px;
-  text-decoration: none;
-  margin-top: 0; 
 }
 .input {
   padding: 10px 20px;

@@ -1,70 +1,73 @@
-let now = new Date();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let currentDay = days[now.getDay()];
-  let currentDatePosition = now.getDate();
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let currentMonth = months[now.getMonth()];
-  let currentYear = now.getFullYear();
-  let currentHour = now.getHours();
-  if (currentHour < 10){
-    currentHour = `0${currentHour}`;
+function formatDate(timestamp) {
+    let date = new Date(timestamp);
+    let hours = date.getHours();
+    if (hours < 10) {
+      hours = `0${hours}`;
+    }
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+  
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let day = days[date.getDay()];
+    return `${day} ${hours}:${minutes}`;
   }
-  let currentMinutes = now.getMinutes();
-  if (currentMinutes < 10){
-    currentMinutes = `0${currentMinutes}`;
+  
+  function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  
+    return days[day];
   }
-  let currentShowDate = document.querySelector("#currentDate");
-  currentShowDate.innerHTML = `${currentDay}, ${currentDatePosition} ${currentMonth} ${currentYear}`;
-   let currentShowTime = document.querySelector ("#currentTime");
-   currentShowTime.innerHTML = `Last update: ${currentHour}:${currentMinutes}`;
-
-function displayForecast() {
+     function displayForecast(response) {
+    let forecast = response.data.daily;
+  
     let forecastElement = document.querySelector("#forecast");
   
-    let days = ["Thu", "Fri", "Sat", "Sun"];
-  
     let forecastHTML = `<div class="row">`;
-    days.forEach(function (day) {
-      forecastHTML =
-        forecastHTML +
-        `
-        <div class="col">
-          <strong>${day}</strong>
+    forecast.forEach(function (forecastDay, index) {
+      if (index < 6) {
+        forecastHTML =
+          forecastHTML +
+        `<div class="col-2">
+          <div>${formatDay(forecastDay.dt)}</div>
           <img
-            src="http://openweathermap.org/img/wn/50d@2x.png"
-            alt=""
+            src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png"
+            alt="" id="icon-days"
             />
-          <div class="forecast-temp"> 18° <span class="forecast-temp-min"> 12° </span>
+          <div class="forecast-temp"> ${Math.round(
+            forecastDay.temp.max
+          )}°  <span class="forecast-temp-min"> ${Math.round(
+            forecastDay.temp.min
+          )}° </span>
           </div>
         </div>
     `;
+          }
     });
-  
+
     forecastHTML = forecastHTML + `</div>`;
-    forecastElement.innerHTML = forecastHTML;
-    console.log(forecastHTML);
-  }
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "e0011d9afadcdf29795388bf3f4d5677";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function cityWeather(response) {
     let h1 = document.querySelector("h1");
@@ -82,6 +85,7 @@ humidityElement.innerHTML = `Humadity: ${response.data.main.humidity}%`;
 windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
 descriptionElement.innerHTML = response.data.weather[0].main;
 iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+getForecast(response.data.coord);
 }
   
   function searchCity(city) {
@@ -119,7 +123,6 @@ iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.da
        let celsiusLink = document.querySelector ("#celsius-link");
        celsiusLink.addEventListener ("click", showCelsiusTemp);
 searchCity(city);
-displayForecast();
 
 function searchLocation(position) {
     let apiKey = "e0011d9afadcdf29795388bf3f4d5677";
