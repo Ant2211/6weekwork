@@ -84,7 +84,7 @@ function cityWeather(response) {
   h1.innerHTML = response.data.name;
   temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}`;
 humidityElement.innerHTML = `Humadity: ${response.data.main.humidity}%`;
-windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/h`;
 descriptionElement.innerHTML = response.data.weather[0].main;
 iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 dateElement.innerHTML = formatDate (response.data.dt * 1000);
