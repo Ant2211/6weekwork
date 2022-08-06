@@ -17,7 +17,8 @@
   <body>
     
     <div class="weather-app">
-                    <li id = "currentDate"></li>
+        <div> <small> Last updated: <span id="date"></span></small></div>        
+                                        
              <form class="input" id="search-form">
         <input type="text" id="input-city" placeholder="Enter a city" autocomplete="off"/>
         <input type="submit" value="search" id="search" />
@@ -30,7 +31,7 @@
           <div class="col">
                         <h1 id="city"><em>City</em></h1>
             <ul>
-                <li>
+                                <li>
                     <img src="" alt="icon" id="icon" />
                     <span id = "temperature">Temp</span>
                     <span class="units"><a href="#" id="celsius-link" class = "active">°C</a> | <a href="#" id="fahrenheit-link">F</a></span>  

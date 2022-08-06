@@ -20,8 +20,10 @@ function formatDate(timestamp) {
     ];
     let day = days[date.getDay()];
     return `${day} ${hours}:${minutes}`;
-  }
+}
+ 
   
+
   function formatDay(timestamp) {
     let date = new Date(timestamp * 1000);
     let day = date.getDay();
@@ -76,7 +78,7 @@ function cityWeather(response) {
     let windElement = document.querySelector("#wind");
     let descriptionElement = document.querySelector("#description");
     let iconElement = document.querySelector ("#icon");
-    
+    let dateElement = document.querySelector ("#date");
   celsiusTemperature = response.data.main.temp;
 
   h1.innerHTML = response.data.name;
@@ -85,6 +87,7 @@ humidityElement.innerHTML = `Humadity: ${response.data.main.humidity}%`;
 windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
 descriptionElement.innerHTML = response.data.weather[0].main;
 iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+dateElement.innerHTML = formatDate (response.data.dt * 1000);
 getForecast(response.data.coord);
 }
   
